@@ -4,12 +4,7 @@
 \alias{suaci_years}
 \title{Available years for SUACI data}
 \usage{
-suaci_years(use_ckan = FALSE)
-}
-\arguments{
-\item{use_ckan}{Logical. If \code{TRUE}, the list of available years is fetched
-live from the CKAN API instead of the built-in registry. Requires an
-internet connection. Default is \code{FALSE}.}
+suaci_years()
 }
 \value{
 An integer vector of available years.
@@ -20,7 +15,4 @@ on the Buenos Aires Data portal.
 }
 \examples{
 suaci_years()
-\dontrun{
-suaci_years(use_ckan = TRUE)
-}
 }

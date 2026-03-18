@@ -13,9 +13,6 @@ NULL
 #'
 #' @param year Integer. The year to download. Must be one of the values
 #'   returned by [suaci_years()].
-#' @param use_ckan Logical. If `TRUE`, resource URLs are resolved via the
-#'   CKAN API instead of the built-in registry. Requires an internet
-#'   connection. Default is `FALSE`.
 #'
 #' @return A [tibble][tibble::tibble] with the following columns:
 #' \describe{
@@ -45,36 +42,22 @@ NULL
 #' @examples
 #' \dontrun{
 #' df_2023 <- suaci_get(2023)
-#' df_2023_ckan <- suaci_get(2023, use_ckan = TRUE)
 #' }
-suaci_get <- function(year, use_ckan = FALSE) {
+suaci_get <- function(year) {
   year <- as.integer(year)
 
-  if (isTRUE(use_ckan)) {
-    resources <- suaci_ckan_resources()
-    yr_chr    <- as.character(year)
-    if (!yr_chr %in% names(resources)) {
-      rlang::abort(
-        paste0(
-          "Year ", year, " was not found on the CKAN portal. ",
-          "Use suaci_years(use_ckan = TRUE) to see available years."
-        )
+  available <- suaci_years()
+  if (!year %in% available) {
+    rlang::abort(
+      paste0(
+        "Year ", year, " is not available. ",
+        "Use suaci_years() to see available years."
       )
-    }
-    urls <- resources[[yr_chr]]
-  } else {
-    available <- suaci_years()
-    if (!year %in% available) {
-      rlang::abort(
-        paste0(
-          "Year ", year, " is not available. ",
-          "Use suaci_years() to see available years."
-        )
-      )
-    }
-    resource_ids <- .SUACI_RESOURCES[[as.character(year)]]
-    urls         <- paste0(.SUACI_BASE_URL, "/", resource_ids, "/download")
+    )
   }
+
+  resource_ids <- .SUACI_RESOURCES[[as.character(year)]]
+  urls         <- paste0(.SUACI_BASE_URL, "/", resource_ids, "/download")
 
   dfs <- lapply(urls, function(url) {
     tmp <- tempfile(fileext = ".csv")
@@ -98,9 +81,6 @@ suaci_get <- function(year, use_ckan = FALSE) {
 #'
 #' @param verbose Logical. If `TRUE` (the default), prints a progress message
 #'   before downloading each year.
-#' @param use_ckan Logical. If `TRUE`, resource URLs are resolved via the
-#'   CKAN API instead of the built-in registry. Requires an internet
-#'   connection. Default is `FALSE`.
 #'
 #' @return A [tibble][tibble::tibble] with the same columns as [suaci_get()],
 #'   containing data for all available years.
@@ -109,16 +89,15 @@ suaci_get <- function(year, use_ckan = FALSE) {
 #' @examples
 #' \dontrun{
 #' all_data <- suaci_get_all()
-#' all_data_ckan <- suaci_get_all(use_ckan = TRUE)
 #' }
-suaci_get_all <- function(verbose = TRUE, use_ckan = FALSE) {
-  years <- suaci_years(use_ckan = use_ckan)
+suaci_get_all <- function(verbose = TRUE) {
+  years <- suaci_years()
 
   dfs <- lapply(years, function(y) {
     if (isTRUE(verbose)) {
       message("Downloading ", y, "...")
     }
-    suaci_get(y, use_ckan = use_ckan)
+    suaci_get(y)
   })
 
   dplyr::bind_rows(dfs)

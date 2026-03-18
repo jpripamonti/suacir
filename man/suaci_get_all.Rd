@@ -4,15 +4,11 @@
 \alias{suaci_get_all}
 \title{Download SUACI data for all available years}
 \usage{
-suaci_get_all(verbose = TRUE, use_ckan = FALSE)
+suaci_get_all(verbose = TRUE)
 }
 \arguments{
 \item{verbose}{Logical. If \code{TRUE} (the default), prints a progress message
 before downloading each year.}
-
-\item{use_ckan}{Logical. If \code{TRUE}, resource URLs are resolved via the
-CKAN API instead of the built-in registry. Requires an internet
-connection. Default is \code{FALSE}.}
 }
 \value{
 A \link[tibble:tibble]{tibble} with the same columns as \code{\link[=suaci_get]{suaci_get()}},
@@ -27,6 +23,5 @@ depending on your connection.
 \examples{
 \dontrun{
 all_data <- suaci_get_all()
-all_data_ckan <- suaci_get_all(use_ckan = TRUE)
 }
 }

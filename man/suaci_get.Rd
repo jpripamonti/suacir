@@ -4,15 +4,11 @@
 \alias{suaci_get}
 \title{Download SUACI data for a single year}
 \usage{
-suaci_get(year, use_ckan = FALSE)
+suaci_get(year)
 }
 \arguments{
 \item{year}{Integer. The year to download. Must be one of the values
 returned by \code{\link[=suaci_years]{suaci_years()}}.}
-
-\item{use_ckan}{Logical. If \code{TRUE}, resource URLs are resolved via the
-CKAN API instead of the built-in registry. Requires an internet
-connection. Default is \code{FALSE}.}
 }
 \value{
 A \link[tibble:tibble]{tibble} with the following columns:
@@ -48,6 +44,5 @@ automatically.
 \examples{
 \dontrun{
 df_2023 <- suaci_get(2023)
-df_2023_ckan <- suaci_get(2023, use_ckan = TRUE)
 }
 }

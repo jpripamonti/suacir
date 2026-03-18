@@ -48,21 +48,10 @@
 #' Returns an integer vector of the years for which SUACI data is available
 #' on the Buenos Aires Data portal.
 #'
-#' @param use_ckan Logical. If `TRUE`, the list of available years is fetched
-#'   live from the CKAN API instead of the built-in registry. Requires an
-#'   internet connection. Default is `FALSE`.
-#'
 #' @return An integer vector of available years.
 #' @export
 #' @examples
 #' suaci_years()
-#' \dontrun{
-#' suaci_years(use_ckan = TRUE)
-#' }
-suaci_years <- function(use_ckan = FALSE) {
-  if (isTRUE(use_ckan)) {
-    as.integer(names(suaci_ckan_resources()))
-  } else {
-    as.integer(names(.SUACI_RESOURCES))
-  }
+suaci_years <- function() {
+  as.integer(names(.SUACI_RESOURCES))
 }

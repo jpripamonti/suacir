@@ -1,0 +1,18 @@
+# R
+*.Rcheck/
+*.tar.gz
+*.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# macOS
+.DS_Store
+
+# Claude Code
+.claude/
+
+# data-raw (raw CSVs, too large for git)
+data-raw/*.csv
+data-raw/*.mhtml
+data-raw/*.pdf

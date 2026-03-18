@@ -138,3 +138,62 @@ test_that("suaci_get() errors on unavailable year", {
   expect_error(suaci_get(2000), regexp = "not available")
   expect_error(suaci_get(2026), regexp = "not available")
 })
+
+# --- .parse_ckan_response() ---------------------------------------------------
+
+local({
+  json_path <- testthat::test_path("fixtures", "ckan_response.json")
+  body      <- jsonlite::fromJSON(json_path, simplifyVector = FALSE)
+
+  test_that(".parse_ckan_response() returns a named list", {
+    res <- suacir:::.parse_ckan_response(body)
+    expect_type(res, "list")
+    expect_true(length(res) > 0L)
+  })
+
+  test_that(".parse_ckan_response() keys are character years", {
+    res  <- suacir:::.parse_ckan_response(body)
+    keys <- names(res)
+    expect_true(all(nchar(keys) == 4L))
+    expect_true(all(grepl("^\\d{4}$", keys)))
+  })
+
+  test_that(".parse_ckan_response() excludes non-CSV resources", {
+    res   <- suacir:::.parse_ckan_response(body)
+    # PDF resource must not appear as a standalone year entry with PDF URL
+    urls  <- unlist(res, use.names = FALSE)
+    expect_false(any(grepl("\\.pdf$", urls, ignore.case = TRUE)))
+  })
+
+  test_that(".parse_ckan_response() excludes incomplete year 2026", {
+    res <- suacir:::.parse_ckan_response(body)
+    expect_false("2026" %in% names(res))
+  })
+
+  test_that(".parse_ckan_response() combines multiple parts for one year", {
+    res <- suacir:::.parse_ckan_response(body)
+    # Fixture has two 2023 resources
+    expect_length(res[["2023"]], 2L)
+  })
+
+  test_that(".parse_ckan_response() years are sorted ascending", {
+    res  <- suacir:::.parse_ckan_response(body)
+    keys <- as.integer(names(res))
+    expect_equal(keys, sort(keys))
+  })
+
+  test_that(".parse_ckan_response() errors on API failure response", {
+    bad_body <- list(success = FALSE, error = list(message = "Not found"))
+    expect_error(suacir:::.parse_ckan_response(bad_body), regexp = "error")
+  })
+})
+
+# --- suaci_years(): use_ckan = FALSE (default, no network) --------------------
+
+test_that("suaci_years(use_ckan = FALSE) returns an integer vector", {
+  expect_type(suaci_years(use_ckan = FALSE), "integer")
+})
+
+test_that("suaci_years() and suaci_years(use_ckan = FALSE) are identical", {
+  expect_identical(suaci_years(), suaci_years(use_ckan = FALSE))
+})

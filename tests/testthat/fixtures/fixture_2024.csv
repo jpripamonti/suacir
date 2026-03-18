@@ -1,0 +1,6 @@
+nro_solicitud;periodo;categoria;prestacion;tipo;fecha_ingreso;hora_ingreso;comuna;barrio;calle;altura;esquina_proxima;canal;long;lat;genero;estado_general;lat_wgs84;long_wgs84
+00563648/24;202408;ARBOLADO;Plantación de árbol;Solicitud;4/8/2024;17:08:41;;;;;;GCS Web;;;Masculino;Abierto;;
+00174370/24;202403;MDA;Consultas e inconvenientes con TAD;Solicitud;8/3/2024;09:03:16;;;;;;GCS Web;;;Femenino;Cerrado;;
+00111111/24;202401;VEREDAS;Reparación de vereda;Reclamo;15/1/2024;10:00:00;3;San Telmo;PERU;500;;Call Center;;;Femenino;Cerrado;;
+00222222/24;202406;ALUMBRADO;Luminaria apagada;Reclamo;20/6/2024;22:30:00;1;Retiro;LIBERTADOR AV.;1000;;GCS Web;;;Masculino;Abierto;;
+00333333/24;202412;TRANSPORTE;Semáforo roto;Reclamo;3/12/2024;08:00:00;6;Caballito;RIVADAVIA AV.;5000;;Call Center;;;Masculino;Cerrado;;

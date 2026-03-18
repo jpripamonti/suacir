@@ -1,0 +1,6 @@
+periodo;concepto;rubro;tipo_prestacion;fecha_ingreso;hora_ingreso;domicilio_cgp;domicilio_barrio;domicilio_calle;domicilio_altura;domicilio_esquina_proxima;lat;long;lat;long
+201601;Reparacion De Banco En Parque / Plaza;Plazas;Reclamo;2016-01-01;12:00:45;8;Villa Soldati;RABANAL AV.;3000;;-34,6645;-58,4365;;
+201601;Semaforo Apagado;Transporte Y Transito;Reclamo;2016-01-03;10:15:00;10;Villa Real;MOLIERE;2843;;-34,6161;-58,5268;;
+201602;Vereda Rota;Veredas;Reclamo;2016-02-10;09:30:22;3;San Telmo;PERU;500;;-34,6200;-58,3715;;
+201603;Luminaria Apagada;Alumbrado;Reclamo;2016-03-05;20:45:00;1;Retiro;LIBERTADOR AV.;1000;;-34,5780;-58,3720;;
+201604;Arbol Caido;Arbolado;Reclamo;2016-04-20;08:00:00;6;Caballito;RIVADAVIA AV.;5000;;-34,6196;-58,4518;;

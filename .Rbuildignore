@@ -1,0 +1,6 @@
+^data-raw$
+^\.claude$
+^.*\.Rcheck$
+^.*\.tar\.gz$
+^\.DS_Store$
+^README\.md$

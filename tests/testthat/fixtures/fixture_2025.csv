@@ -1,0 +1,6 @@
+nro_solicitud,periodo,categoria,prestacion,tipo,fecha_ingreso,hora_ingreso,comuna,barrio,calle,altura,esquina_proxima,canal,long,lat,genero,estado_general
+00300553/25,202503,DESARROLLO URBANO,"Consultas por plazos o demoras en el Expediente",Servicio,2025-03-25,05:03:21 pm,,,,,,GCS Web,,,Masculino,Cerrado
+00300581/25,202503,VEREDAS,Reparación de vereda,Solicitud,2025-03-20,10:00:00 am,3,San Telmo,PERU,500,,Call Center,,,Femenino,Cerrado
+00300585/25,202501,ARBOLADO,Plantación de árbol,Solicitud,2025-01-10,09:30:00 am,6,Caballito,RIVADAVIA AV.,5000,,GCS Web,,,Masculino,Abierto
+00300590/25,202502,ALUMBRADO,Luminaria apagada,Reclamo,2025-02-14,20:45:00 pm,1,Retiro,LIBERTADOR AV.,1000,,GCS Web,,,Femenino,Cerrado
+00300600/25,202504,TRANSPORTE,Semáforo apagado,Reclamo,2025-04-01,07:00:00 am,10,Villa Real,MOLIERE,2843,,Call Center,,,Masculino,Abierto
